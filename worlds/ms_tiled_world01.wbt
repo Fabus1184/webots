@@ -1,0 +1,49 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  info [
+    "This behavior-based controller allows the e-puck robot to follow the black line, avoid obstacles and recover its path afterwards."
+    "This model of the e-puck is equipped with ground sensors, located at the front of the e-puck."
+    "Thanks to Jean-Christophe Zufferey (EPFL-LIS)."
+  ]
+  title "E-Puck"
+  coordinateSystem "NUE"
+  lineScale 0.04
+}
+Viewpoint {
+  orientation 0.5757226263737729 0.5752643454664252 0.581045945099327 4.195016816348794
+  position 0.3739768312334133 2.381467367957727 -0.008738729928681918
+  follow "e-puck"
+  followType "None"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.361851 -2.22045e-16 -0.0603941
+  floorSize 0.9 0.9
+  floorTileSize 0.9 0.9
+  floorAppearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "textures/parcour2.png"
+      ]
+    }
+    roughness 0.2
+    metalness 0
+  }
+  wallHeight 0.05
+}
+DEF EPUCK E-puck {
+  hidden position_0_0 137.08794838827762
+  hidden position_0_1 131.7117782378206
+  hidden rotation_1 0.9999999999999999 0 0 1.142128369673278
+  hidden rotation_2 -1 0 0 6.048072094228867
+  translation 0.003762704374305888 -6.395985666335542e-05 -0.3317103360673058
+  rotation -0.00028616379095786364 -0.9999998731889003 -0.00041440616318114544 1.9396254665611625
+  controller "lab4"
+  groundSensorsSlot [
+    E-puckGroundSensors {
+    }
+  ]
+}
