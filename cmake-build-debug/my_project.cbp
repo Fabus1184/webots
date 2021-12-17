@@ -90,6 +90,9 @@
 		<Unit filename="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab4/tools.h">
 			<Option target="my_project"/>
 		</Unit>
+		<Unit filename="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab5/test.cpp">
+			<Option target="my_project"/>
+		</Unit>
 		<Unit filename="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

@@ -10,6 +10,8 @@ CMakeFiles/my_project.dir/controllers/lab4/lab4.c.o: \
  /opt/webots/include/controller/c/webots/nodes.h \
  /opt/webots/include/controller/c/webots/robot.h \
  /opt/webots/include/controller/c/webots/types.h
+CMakeFiles/my_project.dir/controllers/lab4/test.c.o: \
+ ../controllers/lab4/test.c
 CMakeFiles/my_project.dir/controllers/lab4/tools.c.o: \
  ../controllers/lab4/tools.c \
  ../controllers/lab4/tools.h \

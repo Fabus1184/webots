@@ -150,9 +150,9 @@ int main()
         WbDeviceTag gyro = wb_robot_get_device("gyro");
         wb_gyro_enable(gyro, TIME_STEP);
 
-        WbDeviceTag gs0 = wb_robot_get_device("gs0");
+        WbDeviceTag gs0 = wb_robot_get_device("gs1");
         WbDeviceTag gs1 = wb_robot_get_device("gs1");
-        WbDeviceTag gs2 = wb_robot_get_device("gs2");
+        WbDeviceTag gs2 = wb_robot_get_device("gs1");
         wb_distance_sensor_enable(gs0, TIME_STEP);
         wb_distance_sensor_enable(gs1, TIME_STEP);
         wb_distance_sensor_enable(gs2, TIME_STEP);

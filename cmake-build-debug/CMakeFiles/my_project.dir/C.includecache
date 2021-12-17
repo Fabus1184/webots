@@ -13,14 +13,14 @@ webots/motor.h
 -
 webots/distance_sensor.h
 -
-webots/gyro.h
--
-math.h
--
-stdbool.h
+stdio.h
 -
 tools.h
 /home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab4/tools.h
+
+/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab4/test.c
+stdio.h
+-
 
 /home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab4/tools.c
 tools.h
@@ -38,6 +38,8 @@ stdio.h
 math.h
 -
 stdbool.h
+-
+stdlib.h
 -
 
 /home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab4/tools.h
