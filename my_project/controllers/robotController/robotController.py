@@ -32,17 +32,15 @@ class FetzRobot(RobotEmitterReceiverCSV):
         action = int(message[0])
 
         if action == 0:
-            self.wheel_left.setVelocity(2)
+            self.wheel_left.setVelocity(2.5)
             self.wheel_right.setVelocity(0)
         if action == 1:
-            self.wheel_right.setVelocity(2)
+            self.wheel_right.setVelocity(2.5)
             self.wheel_left.setVelocity(0)
         if action == 2:
             self.wheel_right.setVelocity(5)
             self.wheel_left.setVelocity(5)
 
-        self.robot.step(self.get_timestep())
-        self.robot.step(self.get_timestep())
         self.robot.step(self.get_timestep())
 
         self.wheel_left.setVelocity(0)
