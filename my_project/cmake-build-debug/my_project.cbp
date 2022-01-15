@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="my_project"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="my_project">
+				<Option output="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/cmake-build-debug/my_project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/opt/webots/include/controller/c"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 my_project"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="my_project/fast">
+				<Option output="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/cmake-build-debug/my_project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/opt/webots/include/controller/c"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 my_project/fast"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/fabian/Dokumente/Studium/Einführendes\ Projekt/my_webots/my_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab4/lab4.c">
+			<Option target="my_project"/>
+		</Unit>
+		<Unit filename="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab4/test.c">
+			<Option target="my_project"/>
+		</Unit>
+		<Unit filename="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab4/tools.c">
+			<Option target="my_project"/>
+		</Unit>
+		<Unit filename="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab4/tools.h">
+			<Option target="my_project"/>
+		</Unit>
+		<Unit filename="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/controllers/lab5/test.cpp">
+			<Option target="my_project"/>
+		</Unit>
+		<Unit filename="/home/fabian/Dokumente/Studium/Einführendes Projekt/my_webots/my_project/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

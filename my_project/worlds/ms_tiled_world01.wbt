@@ -1,0 +1,368 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  info [
+    "This behavior-based controller allows the e-puck robot to follow the black line, avoid obstacles and recover its path afterwards."
+    "This model of the e-puck is equipped with ground sensors, located at the front of the e-puck."
+    "Thanks to Jean-Christophe Zufferey (EPFL-LIS)."
+  ]
+  title "E-Puck"
+  coordinateSystem "NUE"
+  lineScale 0.04
+}
+Viewpoint {
+  orientation 0.9999533089742292 -0.006022557521290676 0.007557028013201723 5.186099143642251
+  position 0.352940817973256 2.1622259870742413 1.0757515991488207
+  followType "None"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.361851 -2.22045e-16 -0.0603941
+  floorTileSize 0.9 0.9
+  floorAppearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "textures/silverstone.png"
+      ]
+      repeatS FALSE
+      repeatT FALSE
+    }
+    roughness 0.2
+    metalness 0
+  }
+  wallHeight 0.05
+}
+DEF EPUCK Robot {
+  translation 0.684445997748708 -0.0006613846321255699 -0.1932810089689322
+  rotation -3.047993119352698e-06 0.9999999992166781 -3.946331670619386e-05 -2.885434483062309
+  children [
+    Receiver {
+    }
+    Emitter {
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 270.7974696285545
+        axis -1 0 0
+        anchor 0 0.02 0
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+          consumptionFactor -0.001
+          maxVelocity 6.28
+        }
+        PositionSensor {
+          name "left wheel sensor"
+          resolution 0.00628
+        }
+      ]
+      endPoint DEF EPUCK_LEFT_WHEEL Solid {
+        translation -0.025999999999999995 0.02 0
+        rotation 1 0 0 5.66268388734731
+        children [
+          DEF EPUCK_WHEEL Transform {
+            rotation 0 0 1 1.57
+            children [
+              Shape {
+                appearance DEF EPUCK_TRANSPARENT_APPEARANCE PBRAppearance {
+                  baseColor 0.5 0.5 0.5
+                  transparency 0.4
+                  roughness 0.5
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.003
+                  radius 0.02
+                  subdivision 24
+                }
+              }
+              Transform {
+                translation 0 0.0016 0
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      roughness 0.4
+                      metalness 0
+                    }
+                    geometry IndexedFaceSet {
+                      coord Coordinate {
+                        point [
+                          -0.014 0 -0.014
+                          -0.014 0 0.014
+                          0.014 0 0.014
+                          0.014 0 -0.014
+                        ]
+                      }
+                      texCoord TextureCoordinate {
+                        point [
+                          0 0
+                          1 0
+                          1 1
+                          0 1
+                        ]
+                      }
+                      coordIndex [
+                        0, 1, 2, 3
+                      ]
+                      texCoordIndex [
+                        0, 1, 2, 3
+                      ]
+                    }
+                  }
+                ]
+              }
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.117647 0.815686 0.65098
+                  roughness 0.4
+                  metalness 0
+                }
+                geometry Cylinder {
+                  bottom FALSE
+                  height 0.0015
+                  radius 0.0201
+                  top FALSE
+                  subdivision 24
+                }
+              }
+              Transform {
+                translation 0 0.0035 0
+                children [
+                  Shape {
+                    appearance USE EPUCK_TRANSPARENT_APPEARANCE
+                    geometry Cylinder {
+                      height 0.004
+                      radius 0.005
+                    }
+                  }
+                ]
+              }
+              Transform {
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                    }
+                    geometry Cylinder {
+                      height 0.013
+                      radius 0.003
+                      subdivision 6
+                    }
+                  }
+                ]
+              }
+              Transform {
+                translation 0 0.0065 0
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 1 0.647059 0
+                      roughness 0.6
+                      metalness 0
+                    }
+                    geometry Cylinder {
+                      height 0.0001
+                      radius 0.002
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+        name "left wheel"
+        boundingObject DEF EPUCK_WHEEL_BOUNDING_OBJECT Transform {
+          rotation 0 0 1 1.57
+          children [
+            Cylinder {
+              height 0.005
+              radius 0.02
+              subdivision 24
+            }
+          ]
+        }
+        physics DEF EPUCK_WHEEL_PHYSICS Physics {
+          density -1
+          mass 0.005
+        }
+        linearVelocity -1.5782762504518174e-06 0.004670174588532283 -6.022103733584201e-06
+        angularVelocity -0.0003010974645777133 1.0093738457599332e-09 7.894655404903317e-05
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 262.85952276504986
+        axis -1 0 0
+        anchor 0 0.02 0
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+          consumptionFactor -0.001
+          maxVelocity 6.28
+        }
+        PositionSensor {
+          name "right wheel sensor"
+          resolution 0.00628
+        }
+      ]
+      endPoint DEF EPUCK_RIGHT_WHEEL Solid {
+        translation 0.025999999999999978 0.02 0
+        rotation 1 0 0 1.034260136492772
+        children [
+          Transform {
+            rotation 0 1 0 3.14159
+            children [
+              USE EPUCK_WHEEL
+            ]
+          }
+        ]
+        name "right wheel"
+        boundingObject USE EPUCK_WHEEL_BOUNDING_OBJECT
+        physics USE EPUCK_WHEEL_PHYSICS
+        linearVelocity -1.578622508235899e-06 0.0046701682857844175 -6.022095482358823e-06
+        angularVelocity -0.00030111023943415284 1.2321109520833649e-09 7.889779263996159e-05
+      }
+    }
+    DEF MOTORS Transform {
+      translation 0 0.02 0
+      rotation 0 0 1 1.5707996938995747
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.005
+          }
+        }
+        Shape {
+          appearance PBRAppearance {
+            roughness 1
+          }
+          geometry Cylinder {
+            height 0.02
+            radius 0.0053
+          }
+        }
+      ]
+    }
+    DEF GROUND_SENSOR_SLOT Transform {
+      translation 0 0.0003 -0.03
+      rotation 0 0 1 -1.57
+      children [
+        Transform {
+          rotation 0 0 1 1.5708
+          children [
+            DEF EPUCK_GROUND_SENSOR_CIRCUIT Transform {
+              translation 0 0.014 0
+            }
+            DEF EPUCK_GS0 DistanceSensor {
+              translation -0.01 0.003 0
+              rotation 0 0 1 -1.57
+              children [
+                DEF EPUCK_GS_SHAPE Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.3 0.2 0.2
+                    roughness 0.4
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.002 0.004 0.002
+                  }
+                }
+              ]
+              name "gs0"
+              lookupTable [
+                0 1000 0.002
+                0.016 300 0.004
+              ]
+              type "infra-red"
+            }
+            DEF EPUCK_GS1 DistanceSensor {
+              translation 0 0.003 0
+              rotation 0 0 1 -1.57
+              children [
+                USE EPUCK_GS_SHAPE
+              ]
+              name "gs1"
+              lookupTable [
+                0 1000 0.002
+                0.016 300 0.004
+              ]
+              type "infra-red"
+            }
+            DEF EPUCK_GS2 DistanceSensor {
+              translation 0.01 0.003 0
+              rotation 0 0 1 -1.57
+              children [
+                USE EPUCK_GS_SHAPE
+              ]
+              name "gs2"
+              lookupTable [
+                0 1000 0.002
+                0.016 300 0.004
+              ]
+              type "infra-red"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "e-puck"
+  model "GCtronic e-puck"
+  description "Educational robot designed at EPFL"
+  boundingObject Group {
+    children [
+      Transform {
+        translation 0 0.025 0
+        children [
+          Cylinder {
+            height 0.045
+            radius 0.037
+            subdivision 24
+          }
+        ]
+      }
+      Transform {
+        translation 0 0.0051 0
+        children [
+          Box {
+            size 0.04 0.01 0.05
+          }
+        ]
+      }
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 0.15
+    centerOfMass [
+      0 0.015 0
+    ]
+    inertiaMatrix [
+      8.74869e-05 9.78585e-05 8.64333e-05
+      0 0 0
+    ]
+  }
+  controller "robotController"
+  cpuConsumption 1.11
+  linearVelocity -1.184860940525867e-06 0.004669201285284743 -4.520357009862581e-06
+  angularVelocity -0.0003011038509524221 1.120668405203407e-09 7.892217332513846e-05
+}
+Robot {
+  translation 0.68 0 -0.21
+  children [
+    Receiver {
+    }
+    Emitter {
+    }
+  ]
+  controller "fetzController"
+  supervisor TRUE
+}
