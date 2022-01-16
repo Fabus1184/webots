@@ -24,8 +24,8 @@ class FetzAgent:
         self.batch_size = batch_size
         self.gamma = gamma
 
-        self.actor_net = Actor(numberOfInputs, numberOfActorOutputs)
-        self.critic_net = Critic(numberOfInputs)
+        self.actor_net = Actor(numberOfInputs, numberOfActorOutputs).cuda()
+        self.critic_net = Critic(numberOfInputs).cuda()
 
         self.actor_optimizer = optim.Adam(self.actor_net.parameters(), actor_lr)
         self.critic_net_optimizer = optim.Adam(self.critic_net.parameters(), critic_lr)
@@ -33,7 +33,7 @@ class FetzAgent:
         self.buffer = []
 
     def work(self, agentInput, type_="simple"):
-        agentInput = from_numpy(np.array(agentInput)).float().unsqueeze(0)
+        agentInput = from_numpy(np.array(agentInput)).float().unsqueeze(0).cuda()
 
         with no_grad():
             action_prob = self.actor_net(agentInput)
@@ -75,17 +75,17 @@ class FetzAgent:
                 return
             batchSize = self.batch_size
 
-        state = tensor([t.state for t in self.buffer], dtype=torch_float, device="cpu")
-        action = tensor([t.action for t in self.buffer], dtype=torch_long, device="cpu").view(-1, 1)
+        state = tensor([t.state for t in self.buffer], dtype=torch_float, device="cuda")
+        action = tensor([t.action for t in self.buffer], dtype=torch_long, device="cuda").view(-1, 1)
         reward = [t.reward for t in self.buffer]
-        old_action_log_prob = tensor([t.a_log_prob for t in self.buffer], dtype=torch_float, device="cpu").view(-1, 1)
+        old_action_log_prob = tensor([t.a_log_prob for t in self.buffer], dtype=torch_float, device="cuda").view(-1, 1)
 
         R = 0
         Gt = []
         for r in reward[::-1]:
             R = r + self.gamma * R
             Gt.insert(0, R)
-        Gt = tensor(Gt, dtype=torch_float, device="cpu")
+        Gt = tensor(Gt, dtype=torch_float, device="cuda")
 
         for _ in range(self.ppo_update_iters):
             for index in BatchSampler(SubsetRandomSampler(range(len(self.buffer))), batchSize, False):
@@ -118,28 +118,24 @@ class FetzAgent:
 class Actor(torch.nn.Module):
     def __init__(self, numberOfInputs, numberOfOutputs):
         super(Actor, self).__init__()
-        self.fc1 = torch.nn.Linear(numberOfInputs, 100, device="cpu")
-        self.fc2 = torch.nn.Linear(100, 40, device="cpu")
-        self.fc3 = torch.nn.Linear(40, 40, device="cpu")
-        self.action_head = torch.nn.Linear(40, numberOfOutputs, device="cpu")
+        self.fc1 = torch.nn.Linear(numberOfInputs, 40, device="cuda")
+        self.fc2 = torch.nn.Linear(40, 10, device="cuda")
+        self.action_head = torch.nn.Linear(10, numberOfOutputs, device="cuda")
 
     def forward(self, x):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
-        x = F.relu(self.fc3(x))
         return F.softmax(self.action_head(x), dim=1)
 
 
 class Critic(torch.nn.Module):
     def __init__(self, numberOfInputs):
         super(Critic, self).__init__()
-        self.fc1 = torch.nn.Linear(numberOfInputs, 100, device="cpu")
-        self.fc2 = torch.nn.Linear(100, 40, device="cpu")
-        self.fc3 = torch.nn.Linear(40, 40, device="cpu")
-        self.state_value = torch.nn.Linear(40, 1, device="cpu")
+        self.fc1 = torch.nn.Linear(numberOfInputs, 40, device="cuda")
+        self.fc2 = torch.nn.Linear(40, 10, device="cuda")
+        self.state_value = torch.nn.Linear(10, 1, device="cuda")
 
     def forward(self, x):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
-        x = F.relu(self.fc3(x))
         return self.state_value(x)

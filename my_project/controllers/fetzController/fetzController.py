@@ -19,7 +19,7 @@ print("-----------------------")
 class FetzSupervisor(SupervisorCSV):
     def __init__(self):
         super().__init__()
-        self.observationSpace = 3 + 3 * 100
+        self.observationSpace = 3 * 75
         self.actionSpace = 3
 
         self.robot = None
@@ -30,9 +30,9 @@ class FetzSupervisor(SupervisorCSV):
         self.stepsPerEpisode = 20000
         self.episodeScore = 0
         self.episodeScoreList = []
-        self.light_threshold = 500
+        self.light_threshold = 500 / 1000
 
-        self.input_buffer = [1 for _ in range(self.observationSpace)]
+        self.input_buffer = [0. for _ in range(self.observationSpace)]
         self.max_fail = 0
         self.steps = 0
 
@@ -50,20 +50,14 @@ class FetzSupervisor(SupervisorCSV):
         self.messageReceived = self.handle_receiver()
         self.steps += 1
         if self.messageReceived is not None:
-            self.input_buffer = self.input_buffer[:-3]
-            self.input_buffer += [int(float(s) < self.light_threshold) for s in self.messageReceived]
-
+            self.input_buffer = self.input_buffer[3:] + [float(s) / 1000 for s in self.messageReceived]
         return self.input_buffer
 
     def get_reward(self, _):
-        if self.steps > 30:
-            return 1
-        return 0
+        return 1
 
     def is_done(self):
-        if all([bool(s) for s in self.input_buffer[-3:]]):
-            self.max_fail += 1
-        elif all([not bool(s) for s in self.input_buffer[-3:]]):
+        if all([s > self.light_threshold for s in self.input_buffer[-3:]]):
             self.max_fail += 1
         else:
             self.max_fail = 0
@@ -71,7 +65,7 @@ class FetzSupervisor(SupervisorCSV):
         return self.max_fail > 25
 
     def reset(self):
-        self.input_buffer = [1 for _ in range(self.observationSpace)]
+        self.input_buffer = [0. for _ in range(self.observationSpace)]
         self.steps = 0
         self.max_fail = 0
         self.respawnRobot()
@@ -85,7 +79,11 @@ class FetzSupervisor(SupervisorCSV):
 supervisor = FetzSupervisor()
 agent = FetzAgent(supervisor.observationSpace, supervisor.actionSpace)
 
-# agent.load("scheiss-model")
+try:
+    agent.load("scheiss-model")
+    print("LOADED MODEL")
+except Exception:
+    print("COULDNT LOAD MODEL")
 
 while supervisor.episodeCount < supervisor.episodeLimit:
     observation = supervisor.reset()
@@ -100,7 +98,7 @@ while supervisor.episodeCount < supervisor.episodeLimit:
 
         if done:
             supervisor.episodeScoreList.append(supervisor.episodeScore)
-            agent.trainStep()
+            agent.trainStep(batchSize=step)
             break
 
         supervisor.episodeScore += reward
