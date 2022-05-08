@@ -1,3 +1,3 @@
-# Webots controller using AI for line-following
+# Webots robot controller using artificial intelligence
 
 (did not work out)
