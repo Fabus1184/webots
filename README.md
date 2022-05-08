@@ -1,3 +1,3 @@
 # Webots robot controller using artificial intelligence
 
-(did not work out)
+(works but is not optimized enough to produce good results)
